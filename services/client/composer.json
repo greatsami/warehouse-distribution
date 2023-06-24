@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "predis/predis": "^2.2",
+        "spatie/laravel-query-builder": "^5.2",
         "treblle/treblle-api-tools-laravel": "^0.0.1"
     },
     "require-dev": {
