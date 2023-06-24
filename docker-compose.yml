@@ -1,6 +1,24 @@
-version: "3"
+version: '3'
 
 services:
+  meilisearch:
+    image: 'getmeili/meilisearch:latest'
+    ports:
+      - 7700:7700
+    volumes:
+      - warehouse:/meili_data
+    networks:
+      - warehouse
+    healthcheck:
+      test:
+        - CMD
+        - wget
+        - '--no-verbose'
+        - '--spider'
+        - 'http://localhost:7700/health'
+      retries: 3
+      timeout: 5s
+
   redis:
     image: redis:latest
     container_name: "redis"
