@@ -8,6 +8,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Services\AuthenticationService;
 use Illuminate\Contracts\Auth\Factory;
 use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Support\Facades\Cache;
 use Treblle\Tools\Http\Enums\Status;
 use Treblle\Tools\Http\Responses\MessageResponse;
 
@@ -39,6 +40,10 @@ final readonly class LoginController
         $token = $this->service->createAccessToken(
             $this->auth->guard()->user()
         );
+
+
+        // dd($token, Cache::get("$token"));
+
         // fetch the user record
         return new MessageResponse(
             data: [

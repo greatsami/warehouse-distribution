@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Str;
 use Throwable;
 
@@ -42,14 +43,13 @@ final readonly class AuthenticationService
         $token = Str::random(40);
 
         // store in cache
-        Cache::put(
-            key: $token,
+        Redis::set($token, \Safe\json_encode(
             value: [
                 'id' => $user->getKey(),
                 'role' => $user->getAttribute('role')
             ],
-            ttl: now()->addHours(5),
-        );
+            flags: JSON_THROW_ON_ERROR,
+        ));
 
         // return the token
         return $token;

@@ -1,7 +1,8 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Models;
 
+use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 
-class Client extends Model
+/**
+ * @property-read  string $id
+ * @property-read  string $name
+ * @property-read  string $email
+ * @property-read  CarbonInterface $created_at
+ * @property-read  CarbonInterface $updated_at
+ */
+final class Client extends Model
 {
     use HasFactory;
     use HasUlids;
