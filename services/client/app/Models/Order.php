@@ -10,6 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property-read string $id
+ * @property-read OrderStatus $status
+ * @property-read int $weight
+ */
 final class Order extends Model
 {
     use HasFactory;
